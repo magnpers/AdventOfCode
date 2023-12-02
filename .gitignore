@@ -5,3 +5,5 @@
 /.vs
 /2023/Day1/.vs/Day1
 /2023/Day1/x64/Debug
+/2023/Input_fetcher/bin/Debug/net8.0
+/2023/Input_fetcher/obj
