@@ -26,13 +26,3 @@ namespace DataFetch {
         return buffer.str(); // Return the content of the buffer as a string
     }
 }
-
-    int main() 
-    {
-        string fileContent = DataFetch::readFileToString("1");
-        if (!fileContent.empty()) {
-            cout << "File content:\n" << fileContent << endl;
-        }
-
-        return 0;
-    }

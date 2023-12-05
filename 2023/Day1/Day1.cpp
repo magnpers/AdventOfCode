@@ -2,10 +2,15 @@
 //
 
 #include <iostream>
+#include "DataFetch.h"
+using namespace std;
+
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    string inputData = DataFetch::readFileToString("1");
+    cout << inputData;
+
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

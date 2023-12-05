@@ -120,7 +120,7 @@ async Task<string> FetchAocData(string dayNr)
     {
         Uri reqeustUrl = new Uri($"https://adventofcode.com/2023/day/{dayNr}/input");
 
-        string requestCookie = "_ga=GA1.2.1680064569.1701538164; _gid=GA1.2.350792207.1701538164; session=53616c7465645f5fef919e880780e26eacd4d65ff517e156cc98913ee0249ab34bf93e07a8c3d9c07795d23aef27e28112424ffa6ddce185190567ecec2f8843; _ga_MHSNPJKWC7=GS1.2.1701538163.1.1.1701539426.0.0.0";
+        string requestCookie = "";
 
         var httpClient = new HttpClient();
 
