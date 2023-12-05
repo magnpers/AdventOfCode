@@ -2,44 +2,37 @@
 #include <fstream>
 #include <sstream>
 #include <filesystem>
+using namespace std;
+using namespace filesystem;
 
-std::string readFileToString(const std::string& filename) {
-    std::ifstream file(filename);
+namespace DataFetch {
 
-    if (!file.is_open()) {
-        std::cerr << "Error opening file: " << filename << std::endl;
-        return ""; // Return an empty string if the file cannot be opened
-    }
+    string readFileToString(string dayNr)
+    {
+        path currPath = filesystem::current_path(); // Get the parent path of the current working directory
+        path parentPath = currPath.parent_path();
+        string dataFilePath = parentPath.string() + "\\data\\Day" + dayNr + ".txt"; // Construct the path to the data file
 
-    std::stringstream buffer;
-    buffer << file.rdbuf(); // Read the entire file into the buffer
+        ifstream file(dataFilePath);
 
-    return buffer.str(); // Return the content of the buffer as a string
-}
+        if (!file.is_open()) {
+            cerr << "Error opening file: " << dataFilePath << std::endl;
+            return ""; // Return an empty string if the file cannot be opened
+        }
 
-std::string getCurrentWorkingDirectory() {
-    namespace fs = std::filesystem;
+        stringstream buffer;
+        buffer << file.rdbuf(); // Read the entire file into the buffer
 
-    try {
-        // fs::current_path() returns the current working directory as a fs::path object
-        fs::path currentPath = fs::current_path();
-
-        // Convert the fs::path object to a string
-        return currentPath.string();
-    }
-    catch (const std::exception& e) {
-        std::cerr << "Error getting current working directory: " << e.what() << std::endl;
-        return ""; // Return an empty string on error
+        return buffer.str(); // Return the content of the buffer as a string
     }
 }
 
-int main() {
-    std::string filename = "example.txt"; // Replace with the actual file name
-    std::string fileContent = readFileToString(filename);
+    int main() 
+    {
+        string fileContent = DataFetch::readFileToString("1");
+        if (!fileContent.empty()) {
+            cout << "File content:\n" << fileContent << endl;
+        }
 
-    if (!fileContent.empty()) {
-        std::cout << "File content:\n" << fileContent << std::endl;
+        return 0;
     }
-
-    return 0;
-}

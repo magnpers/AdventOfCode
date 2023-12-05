@@ -98,7 +98,7 @@ void SetDataFileStream(string dayNr)
         if (Directory.Exists(dataFolder) == false)
             Directory.CreateDirectory(dataFolder);
 
-        string dayFilePath = $"{dataFolder + "Day"} {dayNr}.txt";
+        string dayFilePath = $"{dataFolder + "Day"}{dayNr}.txt";
 
         if (File.Exists(dayFilePath) == true)
             File.Delete(dayFilePath);
