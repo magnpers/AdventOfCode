@@ -1,6 +1,6 @@
 ﻿Console.WriteLine("Starting app!");
 
-string dayNr = "1";
+string dayNr = "2";
 
 StreamWriter dataFileStream = null, logFileStream = null;
 
