@@ -7,11 +7,16 @@ using namespace filesystem;
 
 namespace DataFetch {
 
-    static string readFileToString(string dayNr)
+    static string readFileToString(int dayNr)
     {
+        stringstream tempstrStream; 
+        tempstrStream << dayNr;
+        string strDayStream;
+        tempstrStream >> strDayStream;
+
         path currPath = filesystem::current_path(); // Get the parent path of the current working directory
         path parentPath = currPath.parent_path();
-        string dataFilePath = parentPath.string() + "\\data\\Day" + dayNr + ".txt"; // Construct the path to the data file
+        string dataFilePath = parentPath.string() + "\\data\\Day" + strDayStream + ".txt"; // Construct the path to the data file
 
         ifstream file(dataFilePath);
 

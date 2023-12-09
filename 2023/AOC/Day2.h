@@ -1,13 +1,12 @@
-#include "DataFetch.h"
+#include <string>
+#include <iostream>
 using namespace std;
 
 namespace Day2
 {
-	void run()
+	inline void Run(string inputData)
 	{
 		int calibrationSum = 0;
-
-		string inputData = DataFetch::readFileToString("2");
 
 		cout << inputData;
 	}

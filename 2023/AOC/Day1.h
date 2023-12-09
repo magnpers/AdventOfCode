@@ -1,15 +1,13 @@
 #include <regex>
-#include "DataFetch.h"
+#include <iostream>
 using namespace std;
-
 
 namespace Day1
 {
-    void run()
+    inline void Run(string inputData)
     {
         int calibrationSum = 0;
 
-        string inputData = DataFetch::readFileToString("1");
         int size = inputData.length();
         string* numbers = new string[size];
 
