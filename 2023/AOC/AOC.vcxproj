@@ -129,8 +129,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DataFetch.h" />
-    <ClCompile Include="Day1.cpp" />
-    <ClCompile Include="Day2.cpp" />
+    <ClCompile Include="Day1.h" />
+    <ClCompile Include="Day2.h" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
