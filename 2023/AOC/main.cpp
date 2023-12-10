@@ -6,7 +6,7 @@ using namespace std;
 
 int main()
 {
-    int manualDay = 1;
+    int manualDay = 2;
 
     struct tm newtime;
     __int64 ltime;
