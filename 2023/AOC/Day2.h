@@ -27,88 +27,158 @@ namespace Day2
 			return false;
 	}
 
-	inline void Run(string inputData)
+	inline bool Compare(int& r, int& g, int& b)
+	{
+
+	}
+
+	inline void Run(string inputData, bool firstVersion)
 	{
 
 		int size = inputData.size();
 
 		int gameNr = 1;
 		bool gameOk = true, foundDigit = false;
-		int idSum = 0;
+		int idSum = 0, powerSum = 0;
 
 		int r = 0, g = 0, b = 0, i = 0;
 		string tmpIntString = "";
 
 		SkipGameNumber(i, inputData);
 
-		while(i < inputData.length())
+
+		while (i < inputData.length())
 		{
-			char currChar = inputData[i];
-
-			if (foundDigit == false)
+			if (firstVersion)
 			{
-				if (currChar == '\n')
-				{
-					if (CheckGame(r, g, b))
-						idSum += gameNr;
-					else
-						cout << "Game nr" << gameNr << " was not ok, skipping to next" << '\n';
+				char currChar = inputData[i];
 
-					gameNr++;
-					ResetGameNumbers(r, g, b);
-					SkipGameNumber(i, inputData);
-				}
-				else if (currChar == ';')
+				if (foundDigit == false) // Version 1 for day 2
 				{
-					if (CheckGame(r, g, b) == false)
+					if (currChar == '\n')
 					{
-						cout << "Game nr" << gameNr << " was not ok, skipping to next" << '\n';
-						SkipGameNumber(i, inputData);
+						if (CheckGame(r, g, b))
+							idSum += gameNr;
+						else
+							cout << "Game nr" << gameNr << " was not ok, skipping to next" << '\n';
+
 						gameNr++;
+						ResetGameNumbers(r, g, b);
+						SkipGameNumber(i, inputData);
 					}
-					ResetGameNumbers(r, g, b);
-				}
-				else if (isdigit(currChar))
-				{
-					tmpIntString += currChar;
-					foundDigit = true;
-				}
+					else if (currChar == ';')
+					{
+						if (CheckGame(r, g, b) == false)
+						{
+							cout << "Game nr" << gameNr << " was not ok, skipping to next" << '\n';
+							SkipGameNumber(i, inputData);
+							gameNr++;
+						}
+						ResetGameNumbers(r, g, b);
+					}
+					else if (isdigit(currChar))
+					{
+						tmpIntString += currChar;
+						foundDigit = true;
+					}
 
-				if(i + 1 < inputData.length())
-					i++;
+					if (i + 1 < inputData.length())
+						i++;
+				}
+				else
+				{
+					while (isdigit(currChar))
+					{
+						tmpIntString += currChar;
+						i++;
+						currChar = inputData[i];
+					}
+					while (isalpha(currChar) == false)
+					{
+						i++;
+						currChar = inputData[i];
+					}
+
+					switch (inputData[i])
+					{
+					case 'r':
+						r += stoi(tmpIntString);
+						break;
+					case 'g':
+						g += stoi(tmpIntString);
+						break;
+					case 'b':
+						b += stoi(tmpIntString);
+						break;
+					default:
+						break;
+					}
+					foundDigit = false;
+					tmpIntString = "";
+				}
 			}
-			else
+			else // Version 2 for day 2
 			{
-				while(isdigit(currChar))
-				{
-					tmpIntString += currChar;
-					i++;
-					currChar = inputData[i];
-				}
-				while (isalpha(currChar) == false)
-				{
-					i++;
-					currChar = inputData[i];
-				}
+				char currChar = inputData[i];
 
-				switch (inputData[i])
+				if (foundDigit == false)
 				{
-				case 'r':
-					r += stoi(tmpIntString);
-					break;
-				case 'g':
-					g += stoi(tmpIntString);
-					break;
-				case 'b':
-					b += stoi(tmpIntString);
-					break;
-				default:
-					break;
+					if (currChar == '\n')
+					{
+						int sum = r * g * b;
+						powerSum += sum;
+						gameNr++;
+						ResetGameNumbers(r, g, b);
+						SkipGameNumber(i, inputData);
+					}
+					else if (isdigit(currChar))
+					{
+						tmpIntString += currChar;
+						foundDigit = true;
+					}
+
+					if (i + 1 < inputData.length())
+						i++;
 				}
-				foundDigit = false;
-				tmpIntString = "";
+				else
+				{
+					while (isdigit(currChar))
+					{
+						tmpIntString += currChar;
+						i++;
+						currChar = inputData[i];
+					}
+					while (isalpha(currChar) == false)
+					{
+						i++;
+						currChar = inputData[i];
+					}
+
+					switch (inputData[i])
+					{
+					case 'r':
+						if (r < stoi(tmpIntString) || r == 0)
+							r = stoi(tmpIntString);
+						break;
+					case 'g':
+						if (g < stoi(tmpIntString) || g == 0)
+							g = stoi(tmpIntString);
+						break;
+					case 'b':
+						if (b < stoi(tmpIntString) || b == 0)
+							b = stoi(tmpIntString);
+						break;
+					default:
+						break;
+					}
+					foundDigit = false;
+					tmpIntString = "";
+				}
 			}
 		}
-		cout << "IdSum = " << idSum;
+		if (firstVersion)
+			cout << "IdSum = " << idSum;
+		else
+			cout << "powerSum = " << powerSum;
 	}
 }

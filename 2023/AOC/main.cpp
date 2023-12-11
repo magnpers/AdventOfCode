@@ -42,7 +42,7 @@ int main()
         Day1::Run(data);
         break;
     case 2:
-        Day2::Run(data);
+        Day2::Run(data, false);
         break;
     default:
         break;
