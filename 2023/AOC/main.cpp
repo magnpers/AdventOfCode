@@ -2,11 +2,12 @@
 #include "DataFetch.h"
 #include "Day1.h"
 #include "Day2.h"
+#include "Day3.h"
 using namespace std;
 
 int main()
 {
-    int manualDay = 2;
+    int manualDay = 3;
 
     struct tm newtime;
     __int64 ltime;
@@ -43,6 +44,9 @@ int main()
         break;
     case 2:
         Day2::Run(data, false);
+        break;
+    case 3:
+        Day3::Run(data);
         break;
     default:
         break;
